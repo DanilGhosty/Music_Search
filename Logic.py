@@ -18,11 +18,9 @@ class Search_engine():
 
     def search_track_by_author(self,search_text):
         search_text = '%'+search_text+'%'
-        print(search_text)
         res=self.db.select('''SELECT Name FROM tracks
                                 WHERE albumId=(SELECT albumId FROM albums WHERE ArtistId=(SELECT ArtistId FROM artists WHERE name LIKE ?))
         ''', search_text)
-        print(res)
         return res
 
     def search_track_by_ganre(self,search_text):

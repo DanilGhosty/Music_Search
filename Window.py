@@ -73,25 +73,20 @@ class Window(Tk):
         self.rbut_ganre.grid(row=0, column=3, sticky=W)
 
     def change(self):
+        self.list.delete(0, END)
         if self.var_rBut.get() == 0:
-            size = self.list.size()
-            self.list.delete(0, size)
             text = self.search_text.get()
             self.result = self.db_Search.search_track(text)
             # insert to listbox:
             for i in self.result:
                 self.list.insert(0, i[0])
         elif self.var_rBut.get() == 1:
-            size = self.list.size()
-            self.list.delete(0, size)
             text = self.search_text.get()
             self.result = self.db_Search.search_track_by_author(text)
             # insert to listbox:
             for i in self.result:
                 self.list.insert(0, i[0])
         elif self.var_rBut.get() == 2:
-            size = self.list.size()
-            self.list.delete(0, size)
             text = self.search_text.get()
             self.result = self.db_Search.search_track_by_ganre(text)
             # insert to listbox:
