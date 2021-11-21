@@ -54,7 +54,7 @@ class Window(Tk):
         #Radiobuttons
         self.rbut_name= Radiobutton(text="By name",variable=self.var_rBut, value=0)
         self.rbut_author = Radiobutton(text="By author",variable=self.var_rBut, value=1)
-        self.rbut_ganre = Radiobutton(text="By ganre",variable=self.var_rBut, value=2)
+        self.rbut_ganre = Radiobutton(text="By genre",variable=self.var_rBut, value=2)
 
         #GRIDS
         self.entry_search.grid(row = 1,column = 0,columnspan=2)
