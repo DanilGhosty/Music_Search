@@ -16,19 +16,36 @@ class Search_engine():
         ''', search_text)
         return res
 
+    def search_track_by_author(self,search_text):
+        search_text = '%'+search_text+'%'
+        print(search_text)
+        res=self.db.select('''SELECT Name FROM tracks
+                                WHERE albumId=(SELECT albumId FROM albums WHERE ArtistId=(SELECT ArtistId FROM artists WHERE name LIKE ?))
+        ''', search_text)
+        print(res)
+        return res
+
+    def search_track_by_ganre(self,search_text):
+        search_text = '%' + search_text + '%'
+        res = self.db.select('''SELECT Name FROM tracks
+                                        WHERE genreId=(SELECT genreId FROM genres WHERE name LIKE ?);
+                ''', search_text)
+        return res
+
+
     def seearch_album(self,text):
         res=self.db.select("""SELECT title FROM albums WHERE albumId =(SELECT albumId FROM tracks WHERE name = ?)
-        """,text[0])
+        """,text)
         return res[0]
 
     def search_artist(self,text):
         res=self.db.select("""SELECT name FROM artists WHERE artistId=(SELECT artistId FROM albums WHERE albumId=(SELECT albumId FROM tracks WHERE name = ?));
-        """,text[0])
+        """,text)
         return res[0]
 
     def search_long(self,text):
         res=self.db.select("""SELECT milliseconds FROM tracks WHERE name=?
-        """,text[0])
+        """,text)
         return res
 
 
